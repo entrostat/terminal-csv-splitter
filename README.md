@@ -20,7 +20,28 @@ terminal-csv-splitter ./my_file.csv --lines=500000 --out=./custom/output/folder
 terminal-csv-splitter ./my_file.csv --lines=500000 --no-header
 ```
 
-You can also run `terminal-csv-splitter --help` for more details or see detailed output below:
+Running `terminal-csv-splitter --help` shows you the flags and their defaults:
+
+```
+Splits a file into multiple CSVs. You are required to have split, sed and mv installed for this to work!
+
+USAGE
+  $ terminal-csv-splitter [FILE] --lines=lines
+
+OPTIONS
+  -H, --no-header    If there is no header in the csv then set this to true
+  -h, --help         show CLI help
+  -l, --lines=lines  (required) The number of lines per file
+  -o, --out=out      [default: ./split-files] The output directory
+  -v, --version      show CLI version
+
+EXAMPLES
+  terminal-csv-splitter ./my_file.csv --lines=500000
+  terminal-csv-splitter ./my_file.csv --lines=500000 --out=./custom/output/folder
+  terminal-csv-splitter ./my_file.csv --lines=500000 --no-header
+```
+
+See detailed command output below:
 <!-- usage -->
 ```sh-session
 $ npm install -g terminal-csv-splitter

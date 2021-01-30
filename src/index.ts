@@ -18,6 +18,8 @@ class TerminalCsvSplitter extends Command {
         `terminal-csv-splitter ./my_file.csv --lines=500000 --no-header`,
     ];
 
+    static usage = `[FILE] --lines=lines`;
+
     static flags = {
         version: flags.version({ char: 'v' }),
         help: flags.help({ char: 'h' }),
