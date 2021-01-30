@@ -33,7 +33,7 @@ npm install -g terminal-csv-splitter
 Or you can use `npx` to run it without installing it.
 
 ## Binaries
-Binaries are included on the releases page.
+Binaries are included on the [releases page](https://github.com/entrostat/terminal-csv-splitter/releases).
 
 # Usage
 
