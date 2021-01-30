@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command';
 import * as path from 'path';
 import { assertFileExists } from './assert-file-exists';
+// @ts-ignore
 import * as fs from 'fs-extra';
 import { removeExtension } from './remove-extension';
 import { v4 as uuid } from 'uuid';
