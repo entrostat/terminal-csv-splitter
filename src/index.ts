@@ -62,16 +62,16 @@ class TerminalCsvSplitter extends Command {
         if (!flags['no-header']) {
             try {
                 await this.addHeadersToFiles(fileList);
-            } catch (e) {
-                this.error(e.message);
+            } catch (error) {
+                this.error(error.message);
             }
         }
 
         this.log(`Renaming files...`);
         try {
             await this.renameFiles(fileList, filePath);
-        } catch (e) {
-            this.error(e.message);
+        } catch (error) {
+            this.error(error.message);
         }
 
         this.log(`Finished splitting ${args.file} into ${fileList.length} files, check ${outputDirectory} for the result!`);
@@ -79,7 +79,7 @@ class TerminalCsvSplitter extends Command {
 
     /**
      * Makes the directory and creates a suffix to work with during this process
-     * @param outputFlag The output directory specified by the user
+     * @param {string} outputFlag The output directory specified by the user
      * @private
      */
     private async createOutputDirectory(outputFlag: string) {
@@ -92,37 +92,40 @@ class TerminalCsvSplitter extends Command {
 
     /**
      * Splits the file into a certain number of lines
-     * @param lines The number of lines
-     * @param filePath The path to the file
-     * @param outputPath The output path for all of the split files
+     * @param {number} lines The number of lines
+     * @param {string} filePath The path to the file
+     * @param {string} outputPath The output path for all of the split files
      * @private
      */
     private async splitFile(lines: number, filePath: string, outputPath: string) {
         try {
             await execute(`split -l ${lines} ${filePath} ${outputPath}`);
-        } catch (e) {
-            this.error(e.message);
+        } catch (error) {
+            this.error(error.message);
         }
     }
 
     /**
      * Returns a list of all of the files that were created during the split
      * process
-     * @param outputDirectory The directory where the files are saved
-     * @param suffix The special suffix created for this process
+     * @param {string} outputDirectory The directory where the files are saved
+     * @param {string} suffix The special suffix created for this process
      * @private
      */
     private async getFileList(outputDirectory: string, suffix: string) {
         const allFileList = await fs.readdir(outputDirectory);
 
-        const fileList = allFileList
-            .filter((fileName) => fileName.indexOf(suffix) > -1)
+        return allFileList
+            .filter((fileName: string) => fileName.indexOf(suffix) > -1)
             .sort()
-            .map((fileName) => path.join(outputDirectory, fileName));
-
-        return fileList;
+            .map((fileName: string) => path.join(outputDirectory, fileName));
     }
 
+    /**
+     * Returns the headers in a file
+     * @param {string} filePath The path to the file with the headers
+     * @private
+     */
     private async getHeaders(filePath: string): Promise<string> {
         const headers = await execute(`head -n 1 ${filePath}`);
         return headers.replace(/\n$/, '');
@@ -131,7 +134,7 @@ class TerminalCsvSplitter extends Command {
     /**
      * The headers would be in the first file in the list, so we send in all
      * of the files and this function will add headers to the rest
-     * @param fileList The list of files created
+     * @param {string[]} fileList The list of files created
      * @private
      */
     private async addHeadersToFiles(fileList: string[]) {
@@ -152,7 +155,7 @@ class TerminalCsvSplitter extends Command {
         this.log(`Completed ${progress}/${fileList.length} files`);
         await promax
             .add(
-                remainingFiles.map((remainingFile) => async () => {
+                remainingFiles.map((remainingFile: string) => async () => {
                     await execute(`sed -i '1s/^/${headers}\\n/' "${remainingFile}"`);
                     this.log(`Completed ${++progress}/${fileList.length} files`);
                 }),
@@ -164,8 +167,8 @@ class TerminalCsvSplitter extends Command {
     /**
      * Renames the files back to the original file name with a number counter
      * on it
-     * @para files The files that were created during the split process
-     * @param originalFilePath The original file name to use to rename these
+     * @param {string[]} files The files that were created during the split process
+     * @param {string} originalFilePath The original file name to use to rename these
      * files
      * @private
      */
@@ -193,8 +196,10 @@ class TerminalCsvSplitter extends Command {
      * 02
      * 03
      * etc
-     * @param files The number of files that were created
+     * @param {number} files The number of files that were created
      * @private
+     * @returns {number} The maximum digits that would exist when listing the
+     * files
      */
     private calculateMaxDigits(files: number) {
         let maxDigits = 1;
