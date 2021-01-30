@@ -48,7 +48,7 @@ class TerminalCsvSplitter extends Command {
 
         await this.splitFile(flags.lines, filePath, outputPath);
 
-        const fileList = await this.getFileList(outputDirectory, suffix, args.file);
+        const fileList = await this.getFileList(outputDirectory, suffix);
 
         this.log(`Split ${args.file} into ${fileList.length} files!`);
 
