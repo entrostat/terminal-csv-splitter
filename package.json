@@ -1,7 +1,7 @@
 {
     "name": "terminal-csv-splitter",
     "description": "A CSV splitter that uses inbuilt terminal commands",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "author": "Kerren @Kerren-Entrostat",
     "bin": {
         "terminal-csv-splitter": "./bin/run"
