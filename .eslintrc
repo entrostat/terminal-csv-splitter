@@ -5,6 +5,7 @@
         "indent": "off",
         "semi": "off",
         "quotes": "off",
-        "no-await-in-loop": "off"
+        "no-await-in-loop": "off",
+        "@typescript-eslint/ban-ts-ignore": "off"
     }
 }
