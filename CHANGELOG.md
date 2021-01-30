@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/entrostat/terminal-csv-splitter/compare/v1.0.5...v1.0.6) (2021-01-30)
+
+
+### Bug Fixes
+
+* **npm:** Updated the keywords for npm searches ([4fade28](https://github.com/entrostat/terminal-csv-splitter/commit/4fade285b06bd6c16acf75291a7ce7bb836d28c3))
+
 ### [1.0.5](https://github.com/entrostat/terminal-csv-splitter/compare/v1.0.4...v1.0.5) (2021-01-30)
 
 
