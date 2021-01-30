@@ -43,7 +43,18 @@
     ],
     "homepage": "https://github.com/entrostat/terminal-csv-splitter",
     "keywords": [
-        "oclif"
+        "oclif",
+        "cli",
+        "csv",
+        "split",
+        "splitter",
+        "large",
+        "huge",
+        "files",
+        "big",
+        "header",
+        "file",
+        "terminal"
     ],
     "license": "MIT",
     "main": "lib/index.js",
