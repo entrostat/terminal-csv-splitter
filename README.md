@@ -48,7 +48,7 @@ $ npm install -g terminal-csv-splitter
 $ terminal-csv-splitter COMMAND
 running command...
 $ terminal-csv-splitter (-v|--version|version)
-terminal-csv-splitter/1.0.4 linux-x64 node-v14.15.0
+terminal-csv-splitter/1.0.5 linux-x64 node-v14.15.0
 $ terminal-csv-splitter --help [COMMAND]
 USAGE
   $ terminal-csv-splitter COMMAND
