@@ -9,7 +9,13 @@ import { Promax } from 'promax';
 import * as os from 'os';
 
 class TerminalCsvSplitter extends Command {
-    static description = 'describe the command here';
+    static description = 'Splits a file into multiple CSVs';
+
+    static examples = [
+        `terminal-csv-splitter ./my_file.csv --lines=500000`,
+        `terminal-csv-splitter ./my_file.csv --lines=500000 --out=./custom/output/folder`,
+        `terminal-csv-splitter ./my_file.csv --lines=500000 --no-header`,
+    ];
 
     static flags = {
         version: flags.version({ char: 'v' }),
@@ -19,10 +25,10 @@ class TerminalCsvSplitter extends Command {
             description: 'The number of lines per file',
             required: true,
         }),
-        header: flags.boolean({
-            char: 'h',
-            description: 'Whether there is a header in the file',
-            default: true,
+        'no-header': flags.boolean({
+            char: 'H',
+            description: 'If there is no header in the csv then set this to true',
+            default: false,
         }),
         out: flags.string({
             char: 'o',
@@ -40,7 +46,7 @@ class TerminalCsvSplitter extends Command {
 
         this.log(
             `Splitting ${args.file} into files of ${flags.lines} lines each, ${
-                flags.header ? 'headers are enabled' : 'headers are not enabled'
+                flags['no-header'] ? 'headers are not enabled' : 'headers are enabled'
             }...`,
         );
 
@@ -52,7 +58,7 @@ class TerminalCsvSplitter extends Command {
 
         this.log(`Split ${args.file} into ${fileList.length} files!`);
 
-        if (flags.header) {
+        if (!flags['no-header']) {
             try {
                 await this.addHeadersToFiles(fileList);
             } catch (e) {
@@ -186,7 +192,7 @@ class TerminalCsvSplitter extends Command {
      * 02
      * 03
      * etc
-     * @param files
+     * @param files The number of files that were created
      * @private
      */
     private calculateMaxDigits(files: number) {
