@@ -20,6 +20,7 @@
         "@oclif/dev-cli": "^1.26.0",
         "@oclif/test": "^1.2.8",
         "@types/chai": "^4.2.14",
+        "@types/fs-extra": "^9.0.6",
         "@types/mocha": "^5.2.7",
         "@types/node": "^10.17.51",
         "@types/uuid": "^8.3.0",
@@ -35,7 +36,7 @@
         "typescript": "^3.9.7"
     },
     "engines": {
-        "node": ">=8.0.0"
+        "node": ">=11.0.0"
     },
     "files": [
         "/bin",
