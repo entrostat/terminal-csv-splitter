@@ -66,18 +66,3 @@ EXAMPLES
   terminal-csv-splitter ./my_file.csv --lines=500000 --out=./custom/output/folder
   terminal-csv-splitter ./my_file.csv --lines=500000 --no-header
 ```
-
-See detailed command output below:
-<!-- usage -->
-```sh-session
-$ npm install -g terminal-csv-splitter
-$ terminal-csv-splitter COMMAND
-running command...
-$ terminal-csv-splitter (-v|--version|version)
-terminal-csv-splitter/1.0.6 linux-x64 node-v14.15.0
-$ terminal-csv-splitter --help [COMMAND]
-USAGE
-  $ terminal-csv-splitter COMMAND
-...
-```
-<!-- usagestop -->
