@@ -30,7 +30,10 @@ You can install this CLI globally using:
 npm install -g terminal-csv-splitter
 ```
 
-Or you can use `npx` to run it without an install.
+Or you can use `npx` to run it without installing it.
+
+## Binaries
+Binaries are included on the releases page.
 
 # Usage
 
