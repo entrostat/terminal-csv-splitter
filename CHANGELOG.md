@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/entrostat/terminal-csv-splitter/compare/v1.0.8...v1.0.9) (2021-01-30)
+
+
+### Bug Fixes
+
+* **build:** Added the oclif-dev pack command to build binaries ([0de3cda](https://github.com/entrostat/terminal-csv-splitter/commit/0de3cda87afb3cf53a20137c5e6ed5764e11218e))
+
 ### [1.0.8](https://github.com/entrostat/terminal-csv-splitter/compare/v1.0.7...v1.0.8) (2021-01-30)
 
 ### [1.0.7](https://github.com/entrostat/terminal-csv-splitter/compare/v1.0.6...v1.0.7) (2021-01-30)
