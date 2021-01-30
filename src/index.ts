@@ -44,19 +44,11 @@ class TerminalCsvSplitter extends Command {
             }...`,
         );
 
-        const outputDirectory = path.resolve(flags.out);
-        await fs.mkdirp(outputDirectory);
-        const suffix = uuid().toString();
-        const outputPath = path.join(outputDirectory, suffix);
+        const { outputDirectory, outputPath, suffix } = await this.createOutputDirectory(flags.out);
 
-        await execute(`split -l ${flags.lines} ${filePath} ${outputPath}`);
+        await this.splitFile(flags.lines, filePath, outputPath);
 
-        const allFileList = await fs.readdir(outputDirectory);
-
-        const fileList = allFileList
-            .filter((fileName) => fileName.indexOf(suffix) > -1)
-            .sort()
-            .map((fileName) => path.join(outputDirectory, fileName));
+        const fileList = await this.getFileList(outputDirectory, suffix, args.file);
 
         this.log(`Split ${args.file} into ${fileList.length} files!`);
 
@@ -76,6 +68,52 @@ class TerminalCsvSplitter extends Command {
         }
 
         this.log(`Finished splitting ${args.file} into ${fileList.length} files, check ${outputDirectory} for the result!`);
+    }
+
+    /**
+     * Makes the directory and creates a suffix to work with during this process
+     * @param outputFlag The output directory specified by the user
+     * @private
+     */
+    private async createOutputDirectory(outputFlag: string) {
+        const outputDirectory = path.resolve(outputFlag);
+        await fs.mkdirp(outputDirectory);
+        const suffix = uuid().toString();
+        const outputPath = path.join(outputDirectory, suffix);
+        return { outputDirectory, outputPath, suffix };
+    }
+
+    /**
+     * Splits the file into a certain number of lines
+     * @param lines The number of lines
+     * @param filePath The path to the file
+     * @param outputPath The output path for all of the split files
+     * @private
+     */
+    private async splitFile(lines: number, filePath: string, outputPath: string) {
+        try {
+            await execute(`split -l ${lines} ${filePath} ${outputPath}`);
+        } catch (e) {
+            this.error(e.message);
+        }
+    }
+
+    /**
+     * Returns a list of all of the files that were created during the split
+     * process
+     * @param outputDirectory The directory where the files are saved
+     * @param suffix The special suffix created for this process
+     * @private
+     */
+    private async getFileList(outputDirectory: string, suffix: string) {
+        const allFileList = await fs.readdir(outputDirectory);
+
+        const fileList = allFileList
+            .filter((fileName) => fileName.indexOf(suffix) > -1)
+            .sort()
+            .map((fileName) => path.join(outputDirectory, fileName));
+
+        return fileList;
     }
 
     private async getHeaders(filePath: string): Promise<string> {
@@ -116,23 +154,41 @@ class TerminalCsvSplitter extends Command {
         this.log('');
     }
 
+    /**
+     * Renames the files back to the original file name with a number counter
+     * on it
+     * @para files The files that were created during the split process
+     * @param originalFilePath The original file name to use to rename these
+     * files
+     * @private
+     */
     private async renameFiles(files: string[], originalFilePath: string) {
         const baseName = path.basename(originalFilePath);
         const ext = path.extname(originalFilePath);
         const blockName = removeExtension(baseName);
         const outputDirectory = path.dirname(files[0]);
         const maxDigits = this.calculateMaxDigits(files.length);
-        let progress = 0;
+        let progress = 1;
 
         // We must run this sequentially
         for (const file of files) {
             await execute(`mv ${file} ${path.join(outputDirectory, `${blockName}_${progress.toString().padStart(maxDigits, '0')}${ext}`)}`);
-            this.log(`Renamed ${++progress}/${files.length} files`);
+            this.log(`Renamed ${progress++}/${files.length} files`);
         }
 
         this.log(``);
     }
 
+    /**
+     * Calculates how many digits each file should have as a suffix so that
+     * they are all the same length. Ie, if there were 10 files, we need to do
+     * 01
+     * 02
+     * 03
+     * etc
+     * @param files
+     * @private
+     */
     private calculateMaxDigits(files: number) {
         let maxDigits = 1;
         while (files / 10 > 1) {
