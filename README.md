@@ -9,7 +9,7 @@ A CSV splitter that uses inbuilt terminal commands.
 [![License](https://img.shields.io/npm/l/terminal-csv-splitter.svg)](https://github.com/Kerren-Entrostat/terminal-csv-splitter/blob/master/package.json)
 
 # Introduction
-This CLI splits files using `split`, `sed` and `mv`. It will only work on systems that have these binaries installed and accessible.
+This CLI splits files using `split`, `sed` and `mv`. It will only work on systems that have these binaries installed and accessible. By default, it creates a new folder in your current position with the name `/split-files` and stores the result there.
 
 # Usage
 
@@ -34,7 +34,3 @@ USAGE
 ...
 ```
 <!-- usagestop -->
-# Commands
-<!-- commands -->
-
-<!-- commandsstop -->
