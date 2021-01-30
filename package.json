@@ -69,7 +69,8 @@
         "version": "oclif-dev readme && git add README.md",
         "release": "standard-version --sign",
         "release:no-sign": "standard-version",
-        "release:dry-run": "standard-version --dry-run"
+        "release:dry-run": "standard-version --dry-run",
+        "pack": "oclif-dev pack"
     },
     "types": "lib/index.d.ts"
 }
