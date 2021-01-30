@@ -9,7 +9,7 @@ import { Promax } from 'promax';
 import * as os from 'os';
 
 class TerminalCsvSplitter extends Command {
-    static description = 'Splits a file into multiple CSVs';
+    static description = 'Splits a file into multiple CSVs. You are required to have split, sed and mv installed for this to work!';
 
     static examples = [
         `terminal-csv-splitter ./my_file.csv --lines=500000`,
