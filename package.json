@@ -70,7 +70,8 @@
         "release": "standard-version --sign",
         "release:no-sign": "standard-version",
         "release:dry-run": "standard-version --dry-run",
-        "pack": "oclif-dev pack"
+        "pack": "oclif-dev pack",
+        "pack:deb": "oclif-dev pack:deb"
     },
     "types": "lib/index.d.ts"
 }
