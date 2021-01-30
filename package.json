@@ -6,7 +6,7 @@
   "bin": {
     "terminal-csv-splitter": "./bin/run"
   },
-  "bugs": "https://github.com/Kerren-Entrostat/terminal-csv-splitter/issues",
+  "bugs": "https://github.com/entrostat/terminal-csv-splitter/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -41,7 +41,7 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/Kerren-Entrostat/terminal-csv-splitter",
+  "homepage": "https://github.com/entrostat/terminal-csv-splitter",
   "keywords": [
     "oclif"
   ],
@@ -50,7 +50,7 @@
   "oclif": {
     "bin": "terminal-csv-splitter"
   },
-  "repository": "Kerren-Entrostat/terminal-csv-splitter",
+  "repository": "entrostat/terminal-csv-splitter",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
