@@ -184,7 +184,9 @@ class TerminalCsvSplitter extends Command {
 
         // We must run this sequentially
         for (const file of files) {
-            await execute(`mv ${file} ${path.join(outputDirectory, `${blockName}_${progress.toString().padStart(maxDigits, '0')}${ext}`)}`);
+            await execute(
+                `mv '${file}' '${path.join(outputDirectory, `${blockName}_${progress.toString().padStart(maxDigits, '0')}${ext}`)}'`,
+            );
             this.log(`Renamed ${progress++}/${files.length} files`);
         }
 
