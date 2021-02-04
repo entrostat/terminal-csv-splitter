@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/entrostat/terminal-csv-splitter/compare/v1.1.1...v1.1.2) (2021-02-04)
+
+
+### Bug Fixes
+
+* **file-paths:** Allow for spaces in the file paths for split, head, etc ([c6faf17](https://github.com/entrostat/terminal-csv-splitter/commit/c6faf17d1248e12b1ec8810119b20cb7a24bc61c))
+
 ### [1.1.1](https://github.com/entrostat/terminal-csv-splitter/compare/v1.1.0...v1.1.1) (2021-01-30)
 
 
