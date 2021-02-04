@@ -101,7 +101,7 @@ class TerminalCsvSplitter extends Command {
      */
     private async splitFile(lines: number, filePath: string, outputPath: string) {
         try {
-            await execute(`split -l ${lines} ${filePath} ${outputPath}`);
+            await execute(`split -l ${lines} '${filePath}' '${outputPath}'`);
         } catch (error) {
             this.error(error.message);
         }
