@@ -129,7 +129,7 @@ class TerminalCsvSplitter extends Command {
      * @private
      */
     private async getHeaders(filePath: string): Promise<string> {
-        const headers = await execute(`head -n 1 ${filePath}`);
+        const headers = await execute(`head -n 1 '${filePath}'`);
         return headers.replace(/\n$/, '');
     }
 
