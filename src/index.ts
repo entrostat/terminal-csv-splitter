@@ -44,6 +44,7 @@ class TerminalCsvSplitter extends Command {
 
     async run() {
         const { args, flags } = this.parse(TerminalCsvSplitter);
+        await this.assertToolsExist();
         const filePath = path.resolve(args.file);
         await assertFileExists(filePath, () => this.error(`The file ${args.file} does not exist...`));
 
@@ -65,7 +66,7 @@ class TerminalCsvSplitter extends Command {
             try {
                 await this.addHeadersToFiles(fileList);
             } catch (error) {
-                this.error(error.message);
+                this.logError(error);
             }
         }
 
@@ -73,7 +74,7 @@ class TerminalCsvSplitter extends Command {
         try {
             await this.renameFiles(fileList, filePath);
         } catch (error) {
-            this.error(error.message);
+            this.logError(error);
         }
 
         this.log(`Finished splitting ${args.file} into ${fileList.length} files, check ${outputDirectory} for the result!`);
@@ -103,7 +104,7 @@ class TerminalCsvSplitter extends Command {
         try {
             await execute(`split -l ${lines} '${filePath}' '${outputPath}'`);
         } catch (error) {
-            this.error(error.message);
+            this.logError(error);
         }
     }
 
@@ -212,6 +213,48 @@ class TerminalCsvSplitter extends Command {
             files /= 10;
         }
         return maxDigits;
+    }
+
+    /**
+     * If an error is not a string that gets thrown as an exception and then we
+     * don't know what the original error was. This function will try to output
+     * the error message correctly without throwing an exception (if possible)
+     * @param error The error that we'd like to log
+     * @private
+     */
+    private logError(error: any) {
+        if (typeof error === 'string') {
+            return this.error(error);
+        }
+
+        if (!error) {
+            return this.error(`An error has occurred but it is empty`);
+        }
+
+        if (error.message && typeof error.message === 'string') {
+            return this.error(error.message);
+        }
+
+        return this.error(JSON.stringify(error));
+    }
+
+    private async assertToolsExist() {
+        const missingTools: string[] = [];
+        const requiredTools = ['sed', 'head', 'split'];
+
+        for (const requiredTool of requiredTools) {
+            try {
+                await execute(`${requiredTool} --help`);
+            } catch (error) {
+                missingTools.push(requiredTool);
+            }
+        }
+
+        if (missingTools.length === 0) {
+            return;
+        }
+
+        this.logError(`You are missing the following required tools to use this package: ${missingTools.join(', ')}`);
     }
 }
 
