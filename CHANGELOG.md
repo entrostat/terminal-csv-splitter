@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/entrostat/terminal-csv-splitter/compare/v1.1.3...v1.2.0) (2021-07-04)
+
+
+### Features
+
+* **tools:** Assert that head, sed and split exist on the machine ([ec8e053](https://github.com/entrostat/terminal-csv-splitter/commit/ec8e05314705f035f7c267e19c09a55ca6d074db))
+
 ### [1.1.3](https://github.com/entrostat/terminal-csv-splitter/compare/v1.1.2...v1.1.3) (2021-02-04)
 
 
