@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/entrostat/terminal-csv-splitter/compare/v1.2.0...v1.6.0) (2021-09-26)
+
+
+### Features
+
+* **versioning:** Added entro-version to the project ([afb01d3](https://github.com/entrostat/terminal-csv-splitter/commit/afb01d30de38e7632bebceb68d4d0f6e6a4c0fae))
+
+
+### Bug Fixes
+
+* **build:** Don't update the readme each time ([69ac210](https://github.com/entrostat/terminal-csv-splitter/commit/69ac2106d872b998bb56fd1c5cb95448c0f332c9))
+* **build:** Publish the package on npm during pack ([7d7f34f](https://github.com/entrostat/terminal-csv-splitter/commit/7d7f34fa83aded2fd39e7502c85c0f4596807413))
+* **build:** Update the readme before releasing ([7297db8](https://github.com/entrostat/terminal-csv-splitter/commit/7297db8afcff11652a0a005a62f9fe024c0edfa6))
+
 ## [1.2.0](https://github.com/entrostat/terminal-csv-splitter/compare/v1.1.3...v1.2.0) (2021-07-04)
 
 
