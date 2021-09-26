@@ -24,6 +24,7 @@
         "@types/node": "^10.17.51",
         "@types/uuid": "^8.3.0",
         "chai": "^4.2.0",
+        "entro-version": "^1.5.0",
         "eslint": "^5.16.0",
         "eslint-config-oclif": "^3.1.0",
         "eslint-config-oclif-typescript": "^0.1.0",
@@ -67,9 +68,7 @@
         "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
         "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
         "version": "oclif-dev readme && git add README.md",
-        "release": "standard-version --sign",
-        "release:no-sign": "standard-version",
-        "release:dry-run": "standard-version --dry-run",
+        "release": "entro-version --during-release-post-hook=\"npm run pack && git commit -am 'Updated the readme'\"",
         "pack": "oclif-dev pack",
         "pack:deb": "oclif-dev pack:deb"
     },
