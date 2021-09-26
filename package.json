@@ -70,7 +70,7 @@
         "version": "oclif-dev readme && git add README.md",
         "release": "entro-version --during-release-post-hook=\"npm run pack && npm publish\"",
         "pack": "oclif-dev pack",
-        "pack:deb": "sudo oclif-dev pack:deb",
+        "pack:deb": "sudo ./node_modules/.bin/oclif-dev pack:deb",
         "build:release": "npm run pack && npm run pack:deb"
     },
     "types": "lib/index.d.ts"
