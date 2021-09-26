@@ -1,7 +1,7 @@
 {
     "name": "terminal-csv-splitter",
     "description": "A CSV splitter that uses inbuilt terminal commands to run super fast!",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "author": "Kerren @Kerren-Entrostat",
     "bin": {
         "terminal-csv-splitter": "./bin/run"
@@ -69,7 +69,7 @@
         "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
         "version": "oclif-dev readme && git add README.md",
         "release": "entro-version --during-release-post-hook=\"npm run pack && git commit -am 'Updated the readme'\"",
-        "pack": "oclif-dev pack",
+        "pack": "npm publish",
         "pack:deb": "oclif-dev pack:deb"
     },
     "types": "lib/index.d.ts"
